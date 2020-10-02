@@ -36,6 +36,9 @@ export class ApiService {
 
     return this.http.post(this.baseurl + '/flight/', body , {headers: this.httpHeaders});
   }
+  deleteFlight(id): Observable<any>{
+    return this.http.delete(this.baseurl + '/flight/' + id + '/' , {headers: this.httpHeaders});
+  }
 
 
 }

@@ -24,8 +24,10 @@ assigned_plane_type<input type="text" [(ngModel)]="selectedFlight.assigned_plane
 capacity <input type="text" [(ngModel)]="selectedFlight.capacity"><br>
 seats_reserved <input type="text" [(ngModel)]="selectedFlight.seats_reserved"><br>
 seats_available <input type="text" [(ngModel)]="selectedFlight.seats_available"><br>
-<button (click)="updateFlight()">put</button>
-<button (click)="createFlight()">post</button>
+<button *ngIf="selectedFlight.id != -1" (click)="updateFlight()">put</button>
+<button *ngIf="selectedFlight.id == -1"  (click)="createFlight()">post</button>
+<button *ngIf="selectedFlight.id != -1"  (click)="deleteFlight()">delete</button>
+
 
 
 <!--<ul *ngFor="let flight of flights">-->

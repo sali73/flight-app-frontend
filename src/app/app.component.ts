@@ -40,7 +40,7 @@ export class AppComponent {
   updateFlight = () => {
         this.api.updateFlight(this.selectedFlight).subscribe(
       data => {
-        this.selectedFlight = data;
+        this.getFlights();
       },
       error => {
         console.log(error);
@@ -58,5 +58,15 @@ export class AppComponent {
     );
   }
 
+  deleteFlight = () => {
+        this.api.deleteFlight(this.selectedFlight.id).subscribe(
+      data => {
+        this.getFlights();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 }
 
