@@ -27,7 +27,6 @@ export class AppComponent {
     );
   }
   flightClicked = (flight) => {
-    // console.log( flight.id)
     this.api.getOneFlight(flight.id).subscribe(
       data => {
         this.selectedFlight = data;

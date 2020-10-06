@@ -1,37 +1,55 @@
-<h1> welcome page</h1>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body class="container-fluid">
+  <div>
+    <app-header></app-header>
+  </div>
+  <div class="flight_form">
+      <div class="flight_form_group">
+        <input class="form-control form-control-lg " placeholder="Flight" type="text" [(ngModel)]="selectedFlight.flight"><br>
+        <input class="form-control form-control-lg" placeholder="Date" type="text" [(ngModel)]="selectedFlight.date"><br>
+        <input class="form-control form-control-lg" placeholder="Destination" type="text" [(ngModel)]="selectedFlight.destination"><br>
+      </div>
+      <div class="flight_form_group">
+        <input class="form-control form-control-lg" placeholder="Scheduled Departure Time" type="text" [(ngModel)]="selectedFlight.scheduled_departure_time"><br>
+        <input class="form-control form-control-lg" placeholder="Assigned Plane Type" type="text" [(ngModel)]="selectedFlight.assigned_plane_type"><br>
+        <input class="form-control form-control-lg" placeholder="Capacity" type="text" [(ngModel)]="selectedFlight.capacity"><br>
+      </div>
+      <div class="flight_form_group">
+        <input class="form-control form-control-lg" placeholder="Seats Reserved" type="text" [(ngModel)]="selectedFlight.seats_reserved"><br>
+        <input class="form-control form-control-lg" placeholder="Seats Available" type="text" [(ngModel)]="selectedFlight.seats_available"><br>
 
-<h3>list of flights: </h3>
-<table>
-  <tr>
-    <th>Flight</th>
-    <th>Date</th>
-    <th>Destination</th>
-  </tr>
-  <tr *ngFor="let flight of flights">
-    <td ><h2 (click)="flightClicked(flight)">{{flight.flight}}</h2></td>
-    <td >{{flight.date}}</td>
-    <td >{{flight.destination}}</td>
+        <button class="btn btn-primary" *ngIf="selectedFlight.id == -1"  (click)="createFlight()">post</button>
+        <button class="btn btn-primary select_buttons" *ngIf="selectedFlight.id != -1" (click)="updateFlight()">put</button>
+        <button class="btn btn-primary " *ngIf="selectedFlight.id != -1"  (click)="deleteFlight()">delete</button>
+      </div>
+  </div>
+  <div class='table'>
+      <div><h3>List Of Current Flights: </h3></div>
+        <table class="flight_table">
+          <tr style="background-color: #8f2e53; color: #f6f6f6;">
+            <th style="padding: 30px 30px"><h5>Flight</h5></th>
+            <th style="padding: 30px 30px"><h5>Date</h5></th>
+            <th style="padding: 30px 30px"><h5>Destination</h5></th>
+            <th style="padding: 30px 30px"><h5>Departure Time</h5></th>
+            <th style="padding: 30px 30px"><h5>Plane Type</h5></th>
+            <th style="padding: 30px 30px"><h5>Capacity</h5></th>
+            <th style="padding: 30px 30px"><h5>Seats Reserved</h5></th>
+            <th style="padding: 30px 30px"><h5>Seats Available</h5></th>
+          </tr>
+          <tr class="table-dark" *ngFor="let flight of flights">
+            <td style="padding: 20px -30px ; border-top: 1px solid rgb(143, 46, 83) ;  " ><h4 class="btn btn-outline-dark btn-block"  style="color: rgb(143, 46, 83) ; font-weight: bold" (click)="flightClicked(flight)">{{flight.flight}}</h4></td>
+            <td style="padding: 20px 30px ; border-top: 1px solid rgb(143, 46, 83) ; color: rgb(143, 46, 83) "><h5>{{flight.date}}</h5></td>
+            <td style="padding: 20px 30px ; border-top: 1px solid rgb(143, 46, 83) ; color: rgb(143, 46, 83) "><h5>{{flight.destination}}</h5></td>
+            <td style="padding: 20px 30px ; border-top: 1px solid rgb(143, 46, 83) ; color: rgb(143, 46, 83) "><h5>{{flight.scheduled_departure_time}}</h5></td>
+            <td style="padding: 20px 30px ; border-top: 1px solid rgb(143, 46, 83) ; color: rgb(143, 46, 83) "><h5>{{flight.assigned_plane_type}}</h5></td>
+            <td style="padding: 20px 30px ; border-top: 1px solid rgb(143, 46, 83) ; color: rgb(143, 46, 83) "><h5>{{flight.capacity}}</h5></td>
+            <td style="padding: 20px 30px ; border-top: 1px solid rgb(143, 46, 83) ; color: rgb(143, 46, 83) "><h5>{{flight.seats_reserved}}</h5></td>
+            <td style="padding: 20px 30px ; border-top: 1px solid rgb(143, 46, 83) ; color: rgb(143, 46, 83) "><h5>{{flight.seats_available}}</h5></td>
+          </tr>
+        </table>
+  </div>
 
-  </tr>
-</table>
-
-<hr>
-flight <input type="text" [(ngModel)]="selectedFlight.flight"><br>
-date <input type="text" [(ngModel)]="selectedFlight.date"><br>
-destination<input type="text" [(ngModel)]="selectedFlight.destination"><br>
-scheduled_departure_time <input type="text" [(ngModel)]="selectedFlight.scheduled_departure_time"><br>
-assigned_plane_type<input type="text" [(ngModel)]="selectedFlight.assigned_plane_type"><br>
-capacity <input type="text" [(ngModel)]="selectedFlight.capacity"><br>
-seats_reserved <input type="text" [(ngModel)]="selectedFlight.seats_reserved"><br>
-seats_available <input type="text" [(ngModel)]="selectedFlight.seats_available"><br>
-<button *ngIf="selectedFlight.id != -1" (click)="updateFlight()">put</button>
-<button *ngIf="selectedFlight.id == -1"  (click)="createFlight()">post</button>
-<button *ngIf="selectedFlight.id != -1"  (click)="deleteFlight()">delete</button>
-
-
-
-<!--<ul *ngFor="let flight of flights">-->
-<!--  <li ><h2>{{flight.flight}} </h2></li>-->
-<!--  <li>{{flight.date}}</li>-->
-<!--  <li>{{flight.destination}}</li>-->
-<!--</ul>-->
+  <div class="floght_footer"><app-footer></app-footer></div>
+</body>

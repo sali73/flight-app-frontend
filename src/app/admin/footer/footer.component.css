@@ -1,0 +1,11 @@
+.flight_footer{
+  font-weight: bolder ;
+  font-size: x-large ;
+  height: 60px;
+  text-align: center;
+  padding: 20px 0px;
+  font-family: cursive;
+  background-color: #8f2e53;
+  color: #f6f6f6;
+  margin-top:90px;
+}

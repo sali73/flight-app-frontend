@@ -6,10 +6,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-
   baseurl = ' http://127.0.0.1:8000';
   httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
-
   constructor( private  http: HttpClient) { }
 
   getAllFlight(): Observable<any>{
